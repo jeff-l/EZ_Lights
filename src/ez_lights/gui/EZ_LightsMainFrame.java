@@ -30,15 +30,15 @@ public class EZ_LightsMainFrame extends javax.swing.JFrame {
 	private JMenu jMenu1;
 	private JMenuBar jMenuBar1;
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				EZ_LightsMainFrame myFrame = new EZ_LightsMainFrame();
-				myFrame.setLocationRelativeTo(null);
-				myFrame.setVisible(true);
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				EZ_LightsMainFrame myFrame = new EZ_LightsMainFrame();
+//				myFrame.setLocationRelativeTo(null);
+//				myFrame.setVisible(true);
+//			}
+//		});
+//	}
 
 	public EZ_LightsMainFrame() {
 		super();
