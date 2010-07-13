@@ -7,12 +7,16 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
 public class ControllableDevicePanel extends javax.swing.JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private GroupLayout groupLayout;
 	private JButton OffButton;
 	private JButton OnButton;
@@ -67,7 +71,8 @@ public class ControllableDevicePanel extends javax.swing.JPanel {
 		
 		groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
 				.addGroup(groupLayout.createSequentialGroup()
-						.addComponent(DeviceName, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(DeviceName, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))				
+				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 				.addGroup(groupLayout.createSequentialGroup()
 						.addComponent(OnButton, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE))
 				.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)

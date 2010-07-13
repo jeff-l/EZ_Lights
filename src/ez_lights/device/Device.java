@@ -1,8 +1,10 @@
 package ez_lights.device;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
 
 public class Device {
 	private String name;
@@ -11,17 +13,33 @@ public class Device {
 		this.name = name;
 	}
 
-	public static List<Device> loadDevices() {
+	public static List<Device> loadDevices(String fileName) {
 		List<Device> devices = new ArrayList<Device>();
 
 		Device t;
+		String inputLine;
+		String [] fields = null;
 
-		t = new Device("Unknown 1"); // TO DO - change this to get this from 
-		devices.add(t);
-		t = new Device("Unknown 2"); // TO DO - change this to get this from 
-		devices.add(t);
-		t = new Device("Unknown 3"); // TO DO - change this to get this from 
-		devices.add(t);
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while ((inputLine = br.readLine()) != null) {
+				if (inputLine.startsWith("#")) { // Skip comment lines
+					continue;
+				}
+				fields = inputLine.split("/t");
+				if (fields.length >= 1) {
+					t = new Device(fields[0]); 
+					devices.add(t);		
+				}
+			} 
+		}
+		catch (IOException e) {
+			// TO DO Handle this
+			System.err.println("Error: " + e);
+		}
+
+		// TO DO need to close file handles- which one?
+
 
 		return devices;
 	}

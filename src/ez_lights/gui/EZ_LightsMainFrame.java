@@ -1,5 +1,7 @@
 package ez_lights.gui;
+
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
@@ -11,16 +13,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+
+import ez_lights.device.Device;
 
 
 public class EZ_LightsMainFrame extends javax.swing.JFrame {
 	private JButton CloseButton;
 	private AbstractAction closeAboutAction;
-	private ControllableDevicePanel controllableDevicePanel1;
-	private ControllableDevicePanel controllableDevicePanel2;
-	private ControllableDevicePanel controllableDevicePanel3;
+	private ControllableDevicePanel controllableDevicePanel;
 	private JTextField jTextField1;
 	private JButton OKButton;
 	private JDialog AboutDialog;
@@ -40,12 +41,14 @@ public class EZ_LightsMainFrame extends javax.swing.JFrame {
 //		});
 //	}
 
-	public EZ_LightsMainFrame() {
-		super();
-		initGUI();
+	public EZ_LightsMainFrame(List<Device> devices) {
+		super("EZ_Lights");
+		initGUI(devices);
 	}
 
-	private void initGUI() {
+	private void initGUI(List<Device> devices) {
+//		List<ControllableDevicePanel> controllableDevicePanels = new ArrayList<ControllableDevicePanel>();
+		
 		try {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
@@ -78,42 +81,38 @@ public class EZ_LightsMainFrame extends javax.swing.JFrame {
 					System.exit(0);
 				}
 			});
+			
+			 GroupLayout.SequentialGroup sequentialGroup = 	thisLayout.createSequentialGroup()
+				.addContainerGap();
+			 GroupLayout.ParallelGroup parallelGroup = thisLayout.createParallelGroup(); 
+			 
+			for (Device d : devices) {
+				controllableDevicePanel = new ControllableDevicePanel(d.getName());
+				sequentialGroup.addComponent(controllableDevicePanel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE);
+				parallelGroup.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+						.addComponent(controllableDevicePanel, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
+						.addGap(0, 66, Short.MAX_VALUE));			
+			}
 
-			controllableDevicePanel1 = new ControllableDevicePanel("Device Name 1");
-			controllableDevicePanel2 = new ControllableDevicePanel("Device Name 2");
-			controllableDevicePanel3 = new ControllableDevicePanel();
-					
-
-			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(controllableDevicePanel1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addComponent(controllableDevicePanel2, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addComponent(controllableDevicePanel3, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(CloseButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+			sequentialGroup.addGap(10);
+			sequentialGroup.addComponent(CloseButton, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE);
+			sequentialGroup.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);			
+			thisLayout.setVerticalGroup(sequentialGroup);
+			
+			parallelGroup.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+					.addGap(293)
+					.addComponent(CloseButton, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addGap(0, 0, Short.MAX_VALUE));
+			
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(thisLayout.createParallelGroup()
-							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addComponent(controllableDevicePanel1, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 66, Short.MAX_VALUE))
-							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addComponent(controllableDevicePanel2, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 66, Short.MAX_VALUE))
-							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addComponent(controllableDevicePanel3, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 66, Short.MAX_VALUE))									
-							.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-									.addGap(293)
-									.addComponent(CloseButton, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 0, Short.MAX_VALUE))
-							)
-					.addGap(7));
+					.addGroup(parallelGroup)
+					.addGap(7));			
+
 			pack();
 		//	this.setSize(396, 322);
 		} catch (Exception e) {
-			//add your error handling code here
+			// TO DO: add error handling
 			e.printStackTrace();
 		}
 	}
