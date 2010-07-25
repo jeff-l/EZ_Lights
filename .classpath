@@ -2,5 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/home/jeff/workspace/javax-usb/lib/jsr80.jar" sourcepath="/home/jeff/workspace/javax-usb/src"/>
+	<classpathentry kind="lib" path="/home/jeff/workspace/javax-usb-ri/lib/jsr80_ri.jar"/>
+	<classpathentry kind="lib" path="/home/jeff/workspace/javax-usb-ri-linux/lib/jsr80_linux.jar"/>
+	<classpathentry kind="lib" path="/home/jeff/workspace/javax-usb-ri-linux/lib"/>
+	<classpathentry kind="lib" path="/home/jeff/external_libs/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="resources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

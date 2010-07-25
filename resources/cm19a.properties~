@@ -1,0 +1,8 @@
+#
+# Properties file for the CM19a driver
+#
+
+#
+# Whether to turn on a CM19a driver trace
+#
+cm19a.debug = false

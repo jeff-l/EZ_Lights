@@ -1,0 +1,4 @@
+rmmod ati_remote
+rmmod lirc_atiusb
+rmmod x10_cm19a
+

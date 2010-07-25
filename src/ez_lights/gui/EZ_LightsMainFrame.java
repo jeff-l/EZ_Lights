@@ -31,16 +31,6 @@ public class EZ_LightsMainFrame extends javax.swing.JFrame {
 	private JMenu jMenu1;
 	private JMenuBar jMenuBar1;
 
-//	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				EZ_LightsMainFrame myFrame = new EZ_LightsMainFrame();
-//				myFrame.setLocationRelativeTo(null);
-//				myFrame.setVisible(true);
-//			}
-//		});
-//	}
-
 	public EZ_LightsMainFrame(List<Device> devices) {
 		super("EZ_Lights");
 		initGUI(devices);
@@ -78,6 +68,7 @@ public class EZ_LightsMainFrame extends javax.swing.JFrame {
 				public void actionPerformed(ActionEvent evt) {
 					setVisible(false);
 					dispose();
+					// TODO: Must disconnect from the transceiver
 					System.exit(0);
 				}
 			});
@@ -87,7 +78,7 @@ public class EZ_LightsMainFrame extends javax.swing.JFrame {
 			 GroupLayout.ParallelGroup parallelGroup = thisLayout.createParallelGroup(); 
 			 
 			for (Device d : devices) {
-				controllableDevicePanel = new ControllableDevicePanel(d.getName());
+				controllableDevicePanel = new ControllableDevicePanel(d);
 				sequentialGroup.addComponent(controllableDevicePanel, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE);
 				parallelGroup.addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 						.addComponent(controllableDevicePanel, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)

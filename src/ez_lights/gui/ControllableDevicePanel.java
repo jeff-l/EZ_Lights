@@ -10,6 +10,8 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
+import ez_lights.device.Device;
+
 public class ControllableDevicePanel extends javax.swing.JPanel {
 
 	/**
@@ -17,6 +19,7 @@ public class ControllableDevicePanel extends javax.swing.JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Device device;
 	private GroupLayout groupLayout;
 	private JButton OffButton;
 	private JButton OnButton;
@@ -27,9 +30,10 @@ public class ControllableDevicePanel extends javax.swing.JPanel {
 		initPanel("Unknown");
 	}
 	
-	public ControllableDevicePanel(String deviceNameText) {
+	public ControllableDevicePanel(Device d) {
 		super();
-		initPanel(deviceNameText);
+		this.device = d;
+		initPanel(d.getName());
 	}
 	
 	public GroupLayout getGroupLayout() {
@@ -45,7 +49,8 @@ public class ControllableDevicePanel extends javax.swing.JPanel {
 		OnButton.setText("On");
 		OnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(DeviceName.getText() + " On button pushed.");
+				// System.out.println(DeviceName.getText() + " On button pushed.");
+				device.on();
 			}
 		});
 
@@ -53,7 +58,8 @@ public class ControllableDevicePanel extends javax.swing.JPanel {
 		OffButton.setText("Off");
 		OffButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(DeviceName.getText() + " Off button pushed.");
+				// System.out.println(DeviceName.getText() + " Off button pushed.");
+				device.off();
 			}
 		});
 		
