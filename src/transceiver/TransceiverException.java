@@ -21,19 +21,19 @@ package transceiver;
  * 
  */
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+public class TransceiverException extends Exception
+{
+	private static final long serialVersionUID = 1L;
 
-import javax.usb.UsbException;
+		public TransceiverException() {
+				super();
+		}
 
+		public TransceiverException( String message ) {
+				super( message );
+		}
 
-public interface Transceiver {
-
-	void connect() throws TransceiverException, UsbException, UnsupportedEncodingException;
-
-	void release() throws TransceiverException, UsbException;
-
-	void sendCommand(String command) throws TransceiverException, FileNotFoundException, IOException;
-
+		public TransceiverException( String message, Throwable cause ) {
+				super( message, cause );
+		}
 }

@@ -1,5 +1,23 @@
-Copyright (c) 2010 Jeff Luhrsen
-License: TO DO
+/**
+ * Copyright (c) 2010, Jeff Luhrsen
+ * All Rights Reserved.
+ *
+ *     This file is part of EZ_Lights.
+ *
+ *  EZ_Lights is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  EZ_Lights is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with EZ_Lights.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
 
 The EZ_Ligths web site is: http://wiki.github.com/jeff-l/EZ_Lights/
 You can download EZ_Lights at http://github.com/jeff-l/EZ_Lights
@@ -8,15 +26,52 @@ You can download EZ_Lights at http://github.com/jeff-l/EZ_Lights
 ****************
 * Requirements *
 ****************
+Java      1.6 has been used in the development of this project, but it is likely 
+              that versions as early as 1.2 will work
+log4j     http://logging.apache.org/log4j/1.2/download.html
+ANT       http://jakarta.apache.org/ant (make sure to get the optional.jar file!)
 
-jaxb (include in Java 1.6)
+Access to the USB is gained through the JCP software (which has its own dependencies)
+The JCP web site is: http://jcp.org
+
+After installing the JCP software:
+  Add lib/jsr80_linux.jar to your CLASSPATH.
+  Add the directory containing javax.usb.properties to your CLASSPATH.
+  Add the directory containing libJavaxUsb.so to your LD_LIBARRY_PATH
+  
+To attach to the transceiver, you will need write access to the /dev/usb tree
+  You can run the program as root or an account with super user priviliges
+  You can change the permissons of the /dev/usb tree
+  For more information, see the README file in the JCP software
 
 *********
 * Build *
 *********
 
+Run ant (no arguments required) from the EZ_Lights directory
+
+
 ****************
 * Installation *
 ****************
+
+Add the EZ_Lights/resources directory to CLASSPATH so the software can access
+Add the EZ_Lights/bin directory to CLASSPATH for access to the EZ_Lights code
+
+***********
+* Running *
+***********
+
+java EZ_Lights
+
+*******************
+* Troubleshooting *
+*******************
+
+If you are having trouble connecting to the transceiver, it is often a 
+permission problem with the /dev/usb device tree.
+
+Also, other drivers may claim the transceiver before this program runs. See
+the /var/log/messages to see if this is the case.
 
 

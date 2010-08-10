@@ -1,4 +1,4 @@
-package transceiver;
+package ez_lights.homeAutomation;
 
 /**
  * Copyright (c) 2010, Jeff Luhrsen
@@ -21,19 +21,19 @@ package transceiver;
  * 
  */
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.util.List;
 
-import javax.usb.UsbException;
+import transceiver.Transceiver;
 
 
-public interface Transceiver {
+public interface HomeAutomation {
 
-	void connect() throws TransceiverException, UsbException, UnsupportedEncodingException;
-
-	void release() throws TransceiverException, UsbException;
-
-	void sendCommand(String command) throws TransceiverException, FileNotFoundException, IOException;
-
+	public List<Device> getDevices ();
+	
+	public void setDevices(List<Device> devices);
+	
+	public Transceiver getTranceiver();
+	
+	public void setTransceiver(Transceiver transceiver);
+	
 }

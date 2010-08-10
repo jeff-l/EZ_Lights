@@ -1,4 +1,4 @@
-package transceiver;
+package ez_lights.homeAutomation;
 
 /**
  * Copyright (c) 2010, Jeff Luhrsen
@@ -21,19 +21,30 @@ package transceiver;
  * 
  */
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.util.TimerTask;
 
-import javax.usb.UsbException;
+import org.apache.log4j.Logger;
 
+public final class deviceEvent extends TimerTask {
+	
+	static Logger log = Logger.getLogger(deviceEvent.class);	
 
-public interface Transceiver {
+	Device device;
+	String action;
 
-	void connect() throws TransceiverException, UsbException, UnsupportedEncodingException;
+	public deviceEvent (Device device, String action) {
+		this.device = device;
+		this.action = action;
+	}
 
-	void release() throws TransceiverException, UsbException;
-
-	void sendCommand(String command) throws TransceiverException, FileNotFoundException, IOException;
+	public void run(){
+		log.debug(String.format("Event fired for device: %s, action; %s", device.getName(), action));
+		device.runCommand(action);
+	}
 
 }
+
+
+
+
+
